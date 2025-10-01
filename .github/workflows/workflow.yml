@@ -7,11 +7,7 @@ jobs:
 
             - name: Clonar el repositorio
               uses: actions/checkout@v3
-
-            - run: ls -la
-
-            - run: python3 main.py
-
+              
             - name: crear clave ssh
               env:
                 ssh_key: ${{ secrets.SSH_KEY}}

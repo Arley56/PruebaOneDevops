@@ -1,0 +1,17 @@
+name: hello world
+
+on:
+  workflow_dispatch:     # ejecución manual desde la pestaña Actions
+  push:                  # ejecución automática al hacer push
+    branches:
+      - main             # solo cuando hagas push a la rama main
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3   # trae tu código (buena práctica)
+      
+      - name: Say Hello
+        run: echo "hello world"

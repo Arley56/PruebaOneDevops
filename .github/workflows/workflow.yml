@@ -15,5 +15,13 @@ jobs:
                 echo "$ssh_key" > key.pem
                 chmod 600 key.pem
 
-            - run: ls -la
-            - run: cat key.pem
+              
+            - name: ssh connection
+              uses: appleboy/ssh-action@v1
+              with:
+                host: ${{ secrets.HOST}}
+                username: ${{ secrets.USER}}
+                key: ${{ secrets.SSH_KEY}}
+                port: 22
+                script: ls -L
+

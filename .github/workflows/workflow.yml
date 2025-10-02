@@ -20,7 +20,7 @@ jobs:
               uses: appleboy/ssh-action@v1
               with:
                 host: ${{ secrets.HOST }}
-                username: ${{ secrets.User }}
+                username: ${{ secrets.USER }}
                 key: ${{ secrets.SSH_KEY }}
                 port: 22
                 script: ls -la

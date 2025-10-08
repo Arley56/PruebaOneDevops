@@ -1,27 +1,33 @@
-name : hello world
-on : [push]
+name: hello world
+
+on: [push]
+
 jobs:
-    hello_world:
-        runs-on: ubuntu-latest
-        steps:
+  hello_world:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar el repositorio
+        uses: actions/checkout@v3
 
-            - name: Clonar el repositorio
-              uses: actions/checkout@v3
-              
-            - name: crear clave ssh
-              env:
-                ssh_key: ${{ secrets.SSH_KEY }}
-              run:
-                echo "$ssh_key" > key.pem
-                chmod 600 key.pem
+      - name: Crear clave SSH
+        env:
+          ssh_key: ${{ secrets.SSH_KEY }}
+        run: |
+          echo "$ssh_key" > key.pem
+          chmod 600 key.pem
 
-              
-            - name: ssh connection
-              uses: appleboy/ssh-action@v1
-              with:
-                host: ${{ secrets.HOST }}
+      - name: SSH connection
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_KEY }}
+          port: 22
+          script: ls -la
+
                 username: ${{ secrets.USER }}
                 key: ${{ secrets.SSH_KEY }}
                 port: 22
                 script: ls -la
+
 

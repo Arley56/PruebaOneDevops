@@ -1,4 +1,6 @@
-for i in range(10):
-    print(i)
+import requests
 
+def get_weather():
+    result = requests.get("www.ambiente.com/api")
+    return result.json()["temperature"]
     
